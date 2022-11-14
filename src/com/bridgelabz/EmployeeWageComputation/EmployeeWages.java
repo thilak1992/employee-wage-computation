@@ -5,7 +5,7 @@ public class EmployeeWages {
     public static int fullTimeHour = 8;
     public static int partTimeHour = 4;
 
-    public static int calcEmployeeWage(String Company, int numberOfDays, int wagePerHour, int workingHours) {
+    public static int calcEmployeeWage(String company, int numberOfDays, int wagePerHour, int workingHours) {
         int totalWorkingDays = 0;
         int totalWorkingHours = 0;
         int totalWages = 0;
@@ -42,10 +42,17 @@ public class EmployeeWages {
         int totalEmpWage = calcEmployeeWage("Reliance", wagePerHour = 8, numberOfDays = 10, workingHours = 25);
 
 
-        System.out.println("Employee total wage for Reliance Company is: " + totalEmpWage);
+        System.out.println("Employee of Reliance Company has wages : " + totalEmpWage);
+        System.out.println();
         int totalEmpWage1 = calcEmployeeWage("Tata", wagePerHour = 15, numberOfDays = 30, workingHours = 30);
 
-        System.out.println("Employee total wage for tata Company is: " + totalEmpWage1);
+        System.out.println("Employee of tata Company has wages : " + totalEmpWage1);
+        System.out.println();
+        int totalEmpWage2 = calcEmployeeWage("mahindra", wagePerHour = 10, numberOfDays = 20, workingHours = 15);
+
+        System.out.println("Employee of mahindra Company has wages : " + totalEmpWage2);
+
+
     }
 
 
