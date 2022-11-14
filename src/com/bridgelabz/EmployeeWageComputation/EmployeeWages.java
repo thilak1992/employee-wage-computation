@@ -2,38 +2,50 @@ package com.bridgelabz.EmployeeWageComputation;
 
 public class EmployeeWages {
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage Computation Program");
-        int wagePerHour = 20;
-        int fullTimeHour = 8;
-        int partTimeHour = 4;
-        int workingDays = 20;
-        int FullTimeWage = 0;
-        int PartTimewage = 0;
-        int absent = 0;
-        for (int day = 0; day < workingDays; day++) {
-            int employeeCheck = (int) (Math.random() * ((2 + 0) + 1));
+    public static int fullTimeHour = 8;
+    public static int partTimeHour = 4;
 
+    public static int calcEmployeeWage(String Company, int numberOfDays, int wagePerHour, int workingHours) {
+        int totalWorkingDays = 0;
+        int totalWorkingHours = 0;
+        int totalWages = 0;
+        int AbsentWage = 0;
+        while (totalWorkingHours < workingHours && totalWorkingDays < numberOfDays) {
+            int employeeCheck = (int) (Math.random() * ((2 + 0) + 1));
+            totalWorkingDays++;
             switch (employeeCheck) {
                 case 2:
-                    FullTimeWage = FullTimeWage + fullTimeHour * wagePerHour;
-
+                    totalWorkingHours = totalWorkingHours + fullTimeHour;
+                    totalWages = totalWages + fullTimeHour * wagePerHour;
+                    System.out.println("Employee is present full time for the day : " + totalWorkingDays);
                     break;
                 case 1:
-                    PartTimewage = PartTimewage + partTimeHour * wagePerHour;
+                    totalWorkingHours = totalWorkingHours + partTimeHour;
+                    totalWages = totalWages + partTimeHour * wagePerHour;
+                    System.out.println("Employee is present Half time for the day : " + totalWorkingDays);
 
                     break;
                 default:
-                    absent++;
-                    System.out.println("Employee is absent ");
+                    System.out.println(
+                            "Employee is absent on the day " + totalWorkingDays + " So his wages are " + AbsentWage);
             }
 
         }
-        System.out.println("Employee is absent for " + absent);
-        System.out.println("Employee full time Wages are: " + FullTimeWage);
-        System.out.println("Employee Part time Wages are: " + PartTimewage);
+        return totalWages;
 
-        System.out.println("Employee total wage for a month is: " + (FullTimeWage + PartTimewage));
+    }
+
+
+    public static void main(String[] args) {
+        int numberOfDays, wagePerHour, workingHours;
+
+        int totalEmpWage = calcEmployeeWage("Reliance", wagePerHour = 8, numberOfDays = 10, workingHours = 25);
+
+
+        System.out.println("Employee total wage for Reliance Company is: " + totalEmpWage);
+        int totalEmpWage1 = calcEmployeeWage("Tata", wagePerHour = 15, numberOfDays = 30, workingHours = 30);
+
+        System.out.println("Employee total wage for tata Company is: " + totalEmpWage1);
     }
 
 
