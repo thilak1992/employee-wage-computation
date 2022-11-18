@@ -1,59 +1,57 @@
 package com.bridgelabz.EmployeeWageComputation;
 
+import java.util.Random;
+
 public class EmployeeWages {
 
-    public static int fullTimeHour = 8;
-    public static int partTimeHour = 4;
+    public static final int PART_TIME_HOUR=2;
+    public static final int FULL_DAY_HOUR=1;
 
-    public static int calcEmployeeWage(String company, int numberOfDays, int wagePerHour, int workingHours) {
-        int totalWorkingDays = 0;
-        int totalWorkingHours = 0;
-        int totalWages = 0;
-        int AbsentWage = 0;
-        while (totalWorkingHours < workingHours && totalWorkingDays < numberOfDays) {
-            int employeeCheck = (int) (Math.random() * ((2 + 0) + 1));
-            totalWorkingDays++;
-            switch (employeeCheck) {
-                case 2:
-                    totalWorkingHours = totalWorkingHours + fullTimeHour;
-                    totalWages = totalWages + fullTimeHour * wagePerHour;
-                    System.out.println("Employee is present full time for the day : " + totalWorkingDays);
-                    break;
-                case 1:
-                    totalWorkingHours = totalWorkingHours + partTimeHour;
-                    totalWages = totalWages + partTimeHour * wagePerHour;
-                    System.out.println("Employee is present Half time for the day : " + totalWorkingDays);
-
-                    break;
-                default:
-                    System.out.println(
-                            "Employee is absent on the day " + totalWorkingDays + " So his wages are " + AbsentWage);
-            }
-
-        }
-        return totalWages;
-
-    }
-
+    private final String company;
+    private final int WAGE_PER_HOUR;
+    private final int DAYS_IN_MONTH;
+    private final int maxHourPerMonth;
+    private int wageForMonth;
 
     public static void main(String[] args) {
-        int numberOfDays, wagePerHour, workingHours;
-
-        int totalEmpWage = calcEmployeeWage("Reliance", wagePerHour = 8, numberOfDays = 10, workingHours = 25);
-
-
-        System.out.println("Employee of Reliance Company has wages : " + totalEmpWage);
-        System.out.println();
-        int totalEmpWage1 = calcEmployeeWage("Tata", wagePerHour = 15, numberOfDays = 30, workingHours = 30);
-
-        System.out.println("Employee of tata Company has wages : " + totalEmpWage1);
-        System.out.println();
-        int totalEmpWage2 = calcEmployeeWage("mahindra", wagePerHour = 10, numberOfDays = 20, workingHours = 15);
-
-        System.out.println("Employee of mahindra Company has wages : " + totalEmpWage2);
-
+        System.out.println("Welcome to Employee wage Problem");
+        EmployeeWages DMart=new EmployeeWages("DMart",20,22,100);
+        EmployeeWages Relience=new EmployeeWages("Relience",22,24,110);
+        DMart.empWage();
+        System.out.println(DMart);
+        Relience.empWage();
+        System.out.println(Relience);
 
     }
-
+    public EmployeeWages(String company,int WAGE_PER_HOUR,int DAYS_IN_MONTH,int maxHourPerMonth){
+        this.company=company;
+        this.WAGE_PER_HOUR=WAGE_PER_HOUR;
+        this.DAYS_IN_MONTH=DAYS_IN_MONTH;
+        this.maxHourPerMonth=maxHourPerMonth;
+    }
+    public void empWage(){
+        Random random = new Random();
+        int empHrs=0,dayCounter=0,totalEmpHrs=0;
+        while (empHrs<=maxHourPerMonth && dayCounter<DAYS_IN_MONTH) {
+            dayCounter++;
+            int empCheck = random.nextInt(3);
+            switch (empCheck) {
+                case 1:
+                    empHrs=8;
+                    break;
+                case 2:
+                    empHrs=4;
+                    break;
+                default:
+                    empHrs=0;
+            }
+            totalEmpHrs+=empHrs;
+        }
+        wageForMonth=totalEmpHrs*WAGE_PER_HOUR;
+    }
+    @Override
+    public String toString(){
+        return "Empolyee wages for "+company+" is :"+wageForMonth;
+    }
 
 }
